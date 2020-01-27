@@ -1,103 +1,67 @@
-* Assignment 1 - The Art of Clean Code
-** Submission by
-Amar Banerjee
-Roll No. 2018801016
-** Course
-Software Engineering - Spring 2019
+Assignment 1 - The Art of Clean Code
 
-** Disclaimer
+Roll Number : 2018201016
 
-This code has been orginally forked from the Args program described in: http://butunclebob.com/ArticleS.UncleBob.CleanCodeArgs. I have further tried
-to implement a clean coding practice on this source code written in Java.
+Name: Danish Mukhtar
 
-* Usage
-To use the code please implement the main class in the following way.
+**Disclaimer :**
 
-#+BEGIN_SRC java
-public class ArgsMain {
+This code has been orginally forked from the Args program described in: [http://butunclebob.com/ArticleS.UncleBob.CleanCodeArgs](http://butunclebob.com/ArticleS.UncleBob.CleanCodeArgs)
 
-public static void main(String[] args) {
-try {
-Args arg = new Args("l,p#,d*", args);
+**New Feature Added:**
 
-boolean logging = arg.getBoolean('l');
++Support for new Class **&quot;Date&quot;**
 
-int port = arg.getInt('p');
++Unit Test for Date Input
 
-String directory = arg.getString('d');
+**Final Schema Support:**
 
-executeApplication(logging, port, directory);
+**       ** Char   Boolean Argument
 
-} catch (ArgsException e) {
-System.out.printf("Argument error: %s\n", e.errorMessage());
-}
-}
+ Char\*    String Argument
 
-private static void executeApplication(boolean logging, int port, String directory) {
+ Char#   Integer Argument
 
-System.out.printf("logging is %s, port:%d, directory:%s\n",logging, port, directory);
+ Char##  Double Argument
 
-}
-}
-#+END_SRC
+Char$   Date Argument
 
-For the ease of coding, I have used Eclipse IDE as the development environment.
+Char&amp;   Map Argument
 
-* Schema:
-- char - Boolean arg.
-- char* - String arg.
-- char# - Integer arg.
-- char## - double arg.
-- char[*] - one element of a string array.
+Char[\*]   String Array Argument
 
-Example schema: (f,s*,n#,a##,p[*])
-Coresponding command line: "-f -s Bob -n 1 -a 3.2 -p e1 -p e2 -p e3
+**Example for use:**
 
-* Clean Code Practices
+**        Schema: (**z, y#, x\*, p$)
 
-The source code makes use of the following clean coding prcatices:-
+  **Command Line:** java classFile -z -y 3 -x &quot;danish mukhtar&quot; -p 21/11/2000
 
-** Clean Code Practices in Source Code
+**Changes Made For Cleaning Code:**
 
-* Package
-+ The package names are named to convey the semantic categorisation for the classes inside the package.
-+ Classes addressing different aspects have been seperated by packages( The classes defining exceptions,marshallers and arguments
-are kept in a seperate packages), to enable modularity and seperation of concerns.
+1. **I.**** Testing:**
 
-* Imports
-+ The imports inside the classes have been seperated into groups in the order.
-- java libraries import
-- java libraries static import
-- local libraries
-- local libraries static imports
+1. There were multiple asserts per test so changed to one assert per Test.
+2. Added new test cases
 
-+ The imports are again ordered alphabetically to enable ease of reading and uderstanding the dependencies of the classes.
+1. testSimpleDatePresent
+2. testMissingDate
 
-* Class / Interface Name
-+ The class interfaces names have been named to convey the semantic meaning of the operations / functions defined in the class.
-+ The interface names start with an /"I"/ to denote that the file contains the definition of an interface.
 
-* Variables
-+ The variables declared in the classes are arranged alphabetically, so enable reviewer go through each variable in sequence.
-+ The variables are named to convey the semantic meaning and importance of the data to be stored.
-+ Numbering is used in variables to enable quick and easy reading of the variables and understand their meanings.
-+ Every variable declaration has been spaced from other variable declaration to avoid cluttering of text for the ease of reading.
 
-* Methods
+**    II. Source Code:**
 
-+ Functions have been named to convey the operation they execute.
-+ The return types for the methods have been modified to convey the semantic meaning of the values the methods return.
-+ An attempt has been made to keep the meaning of the returned value, the parameters and the function names to match the operations happening
-in the function.
-+ Every statement for variable declaration, data assignment, function call has been spaced to enable the reader to easily identify the order of
-execution.
-+ All logical, loop and switch constructs have been seperated from the single line operational code, to create a direct seperation of concerns.
-+ All methods are sorted in the following order of precedence
-- The order in which the functions are invoked. For e.g., if A invokes B and B invokes C, then the order of the functions in the class will be
-A - B - C
-- If there is no explicit order of the function within the class (As in the cases of POJO Bean classes having only getter and setter), then
-the methods are ordered alphabetically to enable ease of reading and understanding the function.
-+ The methods are defined with not more than 2 parameters, hence reducing data inflow and cross cutting complexity.
-+ For the methods which return a value, the returned variable name is kept consistent with the method objective to enable
-intutive realisation of the returned value and its meaning
-+ Multiple / nested if-else constructs, have been replaced by switch statements, to enable better understading of multiple consitional blocks.
+1. Separated Interface and Classes in different  folders
+2. Removed IntegerArgumentMarshaler , StringArgumentMarshaler , BooleanArgumentMarshaler , DoubleArgumentMarshaler and create single java file  using Generics which handles all the above classes.
+3. Put Marshaller Classes in one folder
+4. Changed Names of few variables to convey the semantic meaning and importance of the data to be stored
+5. Tried to have code in a method as small as possible ,so for few functions
+
+Having many code of lines present breaked into multiple functions.
+
+1. Methods having at max of 2 parameters
+2. Function declaration and Function calls were having parameters in the same line , so changed this format to function return type and function name in one line and every parameter in different lines.
+3. Implemented new feature **Date** with schema as $
+
+
+
+**       **
